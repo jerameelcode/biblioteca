@@ -12,7 +12,10 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
-  security:
-    oauth2:
-      client:
-        scope: password
+
+security:
+  oauth2:
+    client:
+      scope: biblioteca
+      client-id: postman
+      client-secret: postman
