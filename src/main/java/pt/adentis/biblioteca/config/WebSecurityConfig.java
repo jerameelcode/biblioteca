@@ -15,13 +15,13 @@ public class WebSecurityConfig {
     public static final String USERS_BY_USERNAME= "SELECT email, password, status "
             + "from tb_user "
             + "where email = ?";
+
     public static final String ROLES_BY_USERNAME= "select email, role "
             + "from tb_authority "
             + "where email = ?";
 
     @Autowired
     private DataSource dataSource;
-
 
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
@@ -32,9 +32,5 @@ public class WebSecurityConfig {
                 .authoritiesByUsernameQuery(ROLES_BY_USERNAME);
     }
 
-    @Bean
-    public PasswordEncoder passwordEncoder(){
-        return NoOpPasswordEncoder.getInstance();
-    }
 
 }

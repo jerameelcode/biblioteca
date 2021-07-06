@@ -1,5 +1,6 @@
 package pt.adentis.biblioteca.controller;
 
+import org.springframework.stereotype.Controller;
 import pt.adentis.biblioteca.entity.Book;
 import pt.adentis.biblioteca.service.impl.BookServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,21 +16,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@RequestMapping("/books")
+import java.util.List;
+
+@Controller
 public class BookController {
 
     @Autowired
     private BookServiceImpl service;
 
-    @RequestMapping(path = "", method = RequestMethod.GET)
-    public ResponseEntity<Page<Book>> getPageable(@PageableDefault(size = 10, page = 0, direction = Sort.Direction.ASC) Pageable pageable){
-        return ResponseEntity.ok(service.getBooks(pageable));
+    @RequestMapping(path = "/book", method = RequestMethod.GET)
+    public String getPageable(Model model){
+        List<Book> books = service.getBooks();
+        model.addAttribute("books", books);
+        model.addAttribute("title", "Tela de Livros");
+        return "book";
     }
 
-//    @GetMapping("")
-    public ResponseEntity<ModelAndView> getAllRegras(@PageableDefault(size = 10, page = 0) Pageable pageable, Model model){
-        ModelAndView md = new ModelAndView("index.html");
-        return ResponseEntity.ok(md);
-    }
 }

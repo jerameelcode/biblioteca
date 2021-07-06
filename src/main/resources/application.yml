@@ -17,5 +17,5 @@ security:
   oauth2:
     client:
       scope: biblioteca
-      client-id: postman
-      client-secret: postman
+      client-id: adentis
+      client-secret: adentis

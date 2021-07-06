@@ -10,6 +10,7 @@ import pt.adentis.biblioteca.entity.User;
 import pt.adentis.biblioteca.repository.CategoryRepository;
 import pt.adentis.biblioteca.repository.UserRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,8 +19,8 @@ public class UserServiceImpl {
     @Autowired
     private UserRepository repository;
 
-    public Page<User> getUsers(Pageable pageable){
-        Page<User> users = repository.findAll(pageable);
+    public List<User> getUsers(){
+        List<User> users = repository.findAll();
         return users;
     }
 

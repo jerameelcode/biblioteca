@@ -7,14 +7,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BookServiceImpl {
 
     @Autowired
     private BookRepository repository;
 
-    public Page<Book> getBooks(Pageable pageable){
-        Page<Book> regras = repository.findAll(pageable);
+    public List<Book> getBooks(){
+        List<Book> regras = repository.findAll();
         return regras;
     }
 }
